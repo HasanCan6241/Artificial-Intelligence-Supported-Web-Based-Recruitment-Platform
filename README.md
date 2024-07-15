@@ -1,10 +1,4 @@
-Yapay Zeka İle Aday Değerlendirme Sistemi
-
-# :fire: Geliştirici
-
-| İsim Soyisim                                       |
-| :------------------------------------------------- |
-| [Hasan Can Çelik](https://github.com/HasanCan6241) |
+Yapay Zeka İle İşe Alım Platformu
 
 ## 📌 Proje Tanımı
 
