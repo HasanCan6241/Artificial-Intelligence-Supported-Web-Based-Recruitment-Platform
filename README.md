@@ -37,7 +37,7 @@ Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran a
 
 ### 🔍 Kişiselleştirilmiş İş Öneri Sistemi
 
-<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform/static/_d1a018a3-ced6-4a85-abd1-d9d75b90b239.jpeg" alt="Öneri Sistemi" width="700" height="350">
+<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform-project/static/_d1a018a3-ced6-4a85-abd1-d9d75b90b239.jpeg" alt="Öneri Sistemi" width="700" height="350">
 
 Kişiselleştirilmiş İş Öneri Sistemi sayfasında, adayların CV'lerini yükleyebilecekleri özel bir alan bulunmaktadır. Bu alana yüklenen CV'ler, yapay zeka modeli tarafından analiz edilerek kişinin en güçlü olduğu özellikler belirlenir ve adaya uygun iş önerisinde bulunulur. Aynı zamanda, güçlü oldukları alanlar ve geliştirmeleri gereken beceriler konusunda net geri bildirimler sağlanır. Bu sayede adaylar, kendi kariyer hedeflerine daha uygun iş fırsatlarını belirleme konusunda daha bilinçli kararlar alabilirler.
 
@@ -55,7 +55,7 @@ Aday Değerlendirme Hakkında Sayfası, kullanıcıların arka planda çalışan
 
 ### 📈 Aday Değerlendirme
 
-<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform/static/_f686dc91-e4b9-4a91-8815-fba1624c895e.jpeg" alt="Aday Değerlendirme" width="700" height="350">
+<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform-project/static/_f686dc91-e4b9-4a91-8815-fba1624c895e.jpeg" alt="Aday Değerlendirme" width="700" height="350">
 
 Admin panelindeki Aday Değerlendirme sayfasında, ilgili pozisyonlara başvuran adaylar yapay zeka modeli ile değerlendirilir ve uygunluk oranı belirlenir. Değerlendirme sonuçları bir tablo halinde gösterilir ve pozisyona göre filtreleme işlemleri yapılabilir. Bu tablo, adayın ismi, e-posta adresi, başvurduğu pozisyon, uygunluk skoru ve elemeden geçip geçmediği bilgilerini içerir. Filtrelemelere göre tabloyu Excel formatında indirme seçeneği de bulunmaktadır.
 
@@ -85,7 +85,7 @@ Aday Değerlendirme Sistemi, adayların verilerini detaylı bir şekilde analiz 
 
 ### 📄 Aday Başvuruları ve Özgeçmiş Havuzu
 
-<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform/static/_b53c45e4-9eeb-470e-a000-19fc6f26ac55.jpeg" alt="Öneri Sistemi" width="700" height="350">
+<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform-project/static/_b53c45e4-9eeb-470e-a000-19fc6f26ac55.jpeg" alt="Öneri Sistemi" width="700" height="350">
 
 ####📄 Aday Başvuruları
 
