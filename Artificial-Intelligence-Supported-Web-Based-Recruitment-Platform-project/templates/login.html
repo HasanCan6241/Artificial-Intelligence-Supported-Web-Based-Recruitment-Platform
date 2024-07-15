@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Giriş</title>
+    <link rel="icon" type="image/png" href="static/i.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        /* Header */
+        header {
+            background-color: white;
+            color: #fff;
+            padding: 40px 0;
+            text-align: left;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35); /* Burada gölge tanımını ekleyin */
+
+        }
+
+        .login-container {
+            max-width: 650px;
+            margin: 0 auto;
+            margin-top: 200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .login-container h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding-left: 35px; /* Değişiklik: sol padding */
+        }
+
+        .login-form input[type="text"] {
+            background-image: url('static/email.png'); /* Değişiklik: email simgesi */
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: 8px 10px;
+        }
+
+        .login-form input[type="password"] {
+            background-image: url('static/password.png'); /* Değişiklik: şifre simgesi */
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: 8px 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+     <header class="header">
+
+    </header>
+    <div class="container">
+        <div class="login-container">
+            <h2>Yönetici Girişi</h2>
+            {% if message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+            <form action="/login" method="post">
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                        </div>
+                        <input type="text" name="username" placeholder="E-Posta" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                        </div>
+                        <input type="password" name="password" placeholder="Şifre" class="form-control" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-login">Giriş Yap</button>
+
+            </form>
+        </div>
+    </div>
+ <!-- Bootstrap JS ve jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişiselleştirilmiş İş Önerisi</title>
+    <link rel="icon" type="image/png" href="static/i.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Global CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #3580BB;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #f8f9fa;
+        }
+
+        /* Content */
+        .container {
+            margin-top: 51px;
+            text-align: center;
+        }
+        /* Main Content */
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: black;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 82px;
+        }
+
+        .footer-info p,
+        .footer-info a {
+            margin: 5px 0;
+            color:  #fff;
+        }
+
+        .footer-icons a {
+            margin: 0 12px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-icons a:hover {
+            color: #007bff;
+        }
+
+        .copyright {
+            margin-top: 20px;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 24px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            color: #007bff; /* Metin rengi */
+            font-family: Arial, sans-serif; /* Yazı tipi */
+            text-align: center; /* Metnin ortalanması */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Metin gölgesi */
+        }
+         .model-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 26%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/">İlan Başvuru Sayfası</a>
+        <a href="/is_önerisi">Kişiselleştirilmiş İş Önerisi</a>
+        <a href="/değerlendirme_hakkında">Aday Değerlendirme Sistemimiz Hakkında</a>
+    </nav>
+    <br>
+     <img src="static/_d1a018a3-ced6-4a85-abd1-d9d75b90b239.jpeg" alt="Model Image" class="model-image">
+    <div class="container">
+        <div class="form-container">
+            <form action="/is_önerisi" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+
+                        <input type="file" class="custom-file-input" id="fileInput" name="file" accept=".pdf">
+                        <label class="custom-file-label" for="fileInput"> <i class="fas fa-file-pdf mr-2"></i>Özgeçmiş Dosyanızı Seçiniz</label>
+                    </div>
+                </div>
+                <input type="submit" value="Öneride Bulun" class="btn btn-success">
+                <small class="form-text text-muted">Lütfen özgeçmiş dosyanızı PDF formatında ve İngilizce olarak yükleyin.</small>
+            </form>
+        </div>
+        {% if prediction %}
+        <div class="prediction">
+            <h2>{{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <div class="footer-info">
+            <p>© 2024 Yapay Zeka Destekli İşe Alım Platformu</p>
+            <div class="footer-icons">
+                <a href="https://github.com/HasanCan6241?tab=repositories" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i><p1 style="font-size:small;"> Github</p1>
+                </a>
+                <a href="https://www.linkedin.com/in/hasan-can-%C3%A7elik-46950623b/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i><p1 style="font-size:small;"> Linkedln</p1>
+                </a>
+                <a href="hasancan.celik6241@gmail.com" target="_blank" title="Mail">
+                    <i class="fas fa-envelope"></i><p1 style="font-size:small;"> Mail</p1>
+                </a>
+                <a href="https://www.kaggle.com/hasancanelik" target="_blank" title="Kaggle">
+                    <i class="fab fa-kaggle"></i><p1 style="font-size:small;"> Kaggle</p1>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Dosya adını seçilen dosya adı ile değiştir
+        document.getElementById("fileInput").addEventListener("change", function () {
+            var fileName = this.files[0].name;
+            var nextSibling = event.target.nextElementSibling
+            nextSibling.innerText = fileName
+            const maxFileSizeMB = 10; // Maksimum dosya boyutu (MB cinsinden)
+            const maxFileSizeBytes = maxFileSizeMB * 1024 * 1024; // MB cinsinden byte'a çevir
+
+            if (this.files[0].size > maxFileSizeBytes) {
+                alert('Lütfen en fazla ' + maxFileSizeMB + ' MB boyutunda bir dosya yükleyin.');
+                this.value = ''; // Dosya yüklemeyi iptal et
+            }
+        })
+
+    </script>
+</body>
+
+</html>

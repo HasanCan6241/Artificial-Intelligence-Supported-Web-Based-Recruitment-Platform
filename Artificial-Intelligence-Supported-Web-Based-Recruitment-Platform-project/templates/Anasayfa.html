@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Başvuru Sayfası</title>
+    <link rel="icon" type="image/png" href="static/i.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* Global CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        /* Navigation */
+        nav {
+            background-color: #3580BB;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #f8f9fa;
+        }
+
+        /* Container */
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        /* Form */
+        .form-group label {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .form-check-label {
+            display: block; /* Metinleri alt alta yerleştirmek için */
+        }
+        .form-check-label a {
+            color: #007bff;
+        }
+
+        .form-check-label a:hover {
+            text-decoration: underline;
+        }
+
+        .upload-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 4px 15px;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .form-check-input {
+            margin-top: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-info p,
+        .footer-info a {
+            margin: 5px 0;
+            color:  #fff;
+        }
+
+        .footer-icons a {
+            margin: 0 12px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-icons a:hover {
+            color: #007bff;
+        }
+
+        .select{
+            width:60px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 770px;
+            background-color: #fff;
+        }
+
+        .selected-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .selected-item span {
+            margin-right: 5px;
+        }
+
+        .selected-item button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 8px;
+            display: none;
+            width: 100%;
+            max-height: 200px;
+            border: 1px solid #ccc;
+        }
+
+        .dropdown-content option {
+            display: block;
+            padding: 12px;
+            color: #333;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content option:hover {
+            background-color: #f2f2f2;
+        }
+
+        .search-input {
+            width: calc(95% - 20px);
+            margin: 10px;
+            padding:5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Göster/geri al simgeleri için özelleştirilmiş ok */
+        .dropdown-button::after {
+            content: '';
+            border: solid #333;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            margin-left: 5px;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .show .dropdown-button::after {
+            transform: rotate(-135deg);
+        }
+    </style>
+</head>
+
+   <body>
+
+    <nav>
+        <a href="/">İlan Başvuru Sayfası</a>
+        <a href="/is_önerisi">Kişiselleştirilmiş İş Önerisi</a>
+        <a href="/değerlendirme_hakkında">Aday Değerlendirme Sistemimiz Hakkında</a>
+    </nav>
+    <div class="container">
+        <h1 class="text-center mb-4">Öz Geçmiş Başvuru Formu</h1>
+        {% if message %}
+                <div class="alert alert-success" role="alert">
+                {{ message }}
+                </div>
+        {% endif %}
+        <form action="/basvur" method="post" id="applicationForm" enctype="multipart/form-data">
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name"><i class="fas fa-user mr-2"></i>Ad <p style="color:red">*</p></label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Ad" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="surname"><i class="fas fa-user mr-2"></i>Soyad<p style="color:red">*</p></label>
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Soyad" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dob"><i class="far fa-calendar-alt mr-2"></i>Doğum Tarihi<p style="color:red">*</p></label>
+                    <input type="text" class="form-control" id="dob" name="dob" placeholder="GG/AA/YYYY" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="education"><i class="fas fa-graduation-cap mr-2"></i>Eğitim Seviyesi<p style="color:red">*</p></label>
+                    <select class="form-control" id="education" name="education" required>
+                        <option value="" disabled selected>Lütfen Eğitim Seviyesini Seçin</option>
+                        <option value="Lisans">Lisans</option>
+                        <option value="Ön Lisans">Ön Lisans</option>
+                        <option value="Master">Master</option>
+                        <option value="Doktora">Doktora</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="position"><i class="fas fa-briefcase mr-2"></i>Başvurulan Pozisyon<p style="color:red">*</p></label>
+                <select class="form-control" id="position" name="position" required>
+                    <option value="" disabled selected>Lütfen Başvurulan Pozisyonu Seçin</option>
+                    <!-- JavaScript ile dinamik olarak pozisyonlar eklenecek -->
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="dropdown">
+                    <label for="optionList"><i class="fas fa-tools mr-2"></i>Yetenekler<p style="color:red">*</p></label>
+                    <div class="selected-items" onclick="toggleDropdown()">
+                        <!--  <span class="dropdown-button"></span> -->
+                    </div>
+                    <div id="myDropdown" class="dropdown-content">
+                        <input type="text" class="search-input" oninput="filterItems()" placeholder="Ara...">
+                        <input type="hidden" id="selectedSkills" name="selectedSkills">
+                        <select id="optionList" class="optionList" name="optionList" required multiple style="width: 100%;">
+                            <option style="color:red;text-align:center"
+                                    value="" disabled selected>Özgeçmişinizde Yer Alan Yeteneklerinizi Düzenleyebilirsiniz.</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="experience"><i class="fas fa-briefcase mr-2"></i>İş Deneyimi (Yıl)<p style="color:red">*</p></label>
+                    <input type="number" class="form-control" id="experience" name="experience" min="0" placeholder="İş Deneyimi" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="location"><i class="fas fa-map-marker-alt mr-2"></i>İkamet Edilen Yer<p style="color:red">*</p></label>
+                    <select class="form-control" id="location" name="location" required>
+                        <option value="" disabled selected>Lütfen ikamet edilen yeri seçin</option>
+                    </select>
+                 </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="number"><i class="fas fa-phone mr-2"></i>İletişim Numarası<p style="color:red">*</p></label>
+                    <input type="text" class="form-control" id="number" name="number" placeholder="İletişim Numarası" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email"><i class="fas fa-envelope mr-2"></i>E-Posta Adresi<p style="color:red">*</p></label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="E-Posta Adresi" required>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="languages"><i class="fas fa-globe mr-2"></i>Yabancı Dil<p style="color:red">*</p></label>
+                    <select class="form-control" id="languages" name="languages" required>
+                        <option value="" disabled selected>Lütfen Yabancı Dil Seçin</option>
+                        <option value="İngilizce">İngilizce</option>
+                        <option value="Fransızca">Fransızca</option>
+                        <option value="Almanca">Almanca</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                    <label for="languageslevel"><i class="fas fa-language mr-2"></i>Yabancı Dil Seviyesi<p style="color:red">*</p></label>
+                    <select class="form-control" id="languageslevel" name="languageslevel" required>
+                        <option value="" disabled selected>Lütfen Dil Seviyesini Seçin</option>
+                        <option value="Başlangıç">Başlangıç</option>
+                        <option value="Orta">Orta</option>
+                        <option value="İleri">İleri</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="intro"><i class="fas fa-user-circle mr-2"></i>Kendini Tanıtma</label>
+                <textarea class="form-control" id="intro" name="intro" rows="5"  required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="resume"><i class="fas fa-file-pdf mr-2"></i>Özgeçmiş</label>
+                <input type="file" class="form-control-file" id="resume" name="resume" accept=".pdf" required>
+                <small class="form-text text-muted">Lütfen özgeçmiş dosyanızı Ad_Soyad.Pdf formatında yükleyin.</small>
+            </div>
+            <div class="form-check form-check">
+                <input type="checkbox" class="form-check-input" id="confirmationCheckbox" required>
+                <label class="form-check-label" for="confirmationCheckbox">
+                    Kişisel Verilerin Korunması Kanunu’na
+                    <a href="https://www.resmigazete.gov.tr/eskiler/2018/03/20180310-5.htm" target="_blank">
+                        ilişkin aydınlatma metnini ve Gizlilik Sözleşmesini
+                    </a>
+                    okudum, kişisel verilerimin bu kapsamda işlenmesini ve Gizlilik Kurallarını onaylıyorum.
+                </label>
+            </div>
+            <button type="submit" class="btn btn-submit" id="submitButton" disabled>Başvur</button>
+        </form>
+    </div>
+     <footer>
+        <div class="footer-info">
+            <p>© 2024 Yapay Zeka Destekli İşe Alım Platformu</p>
+            <div class="footer-icons">
+                <a href="https://github.com/HasanCan6241?tab=repositories" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i><p1 style="font-size:small;"> Github</p1>
+                </a>
+                <a href="https://www.linkedin.com/in/hasan-can-%C3%A7elik-46950623b/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i><p1 style="font-size:small;"> Linkedln</p1>
+                </a>
+                <a href="hasancan.celik6241@gmail.com" target="_blank" title="Mail">
+                    <i class="fas fa-envelope"></i><p1 style="font-size:small;"> Mail</p1>
+                </a>
+                <a href="https://www.kaggle.com/hasancanelik" target="_blank" title="Kaggle">
+                    <i class="fab fa-kaggle"></i><p1 style="font-size:small;"> Kaggle</p1>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+     <script>
+        const dropdownContent = document.getElementById("myDropdown");
+        const optionList = document.getElementById("optionList");
+        const selectedItemsContainer = document.querySelector(".selected-items");
+        const selectedItemsSet = new Set();
+        let selectedSkills = []
+
+        function toggleDropdown() {
+            dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function filterItems() {
+            const filter = document.querySelector(".search-input").value.trim().toLowerCase();
+
+            Array.from(optionList.options).forEach(option => {
+                const itemName = option.value.toLowerCase();
+                const isVisible = itemName.includes(filter);
+                option.style.display = isVisible ? "block" : "none";
+            });
+
+            dropdownContent.style.display = 'block';
+        }
+
+        document.addEventListener("click", function(event) {
+            const dropdown = document.querySelector(".dropdown");
+            if (!dropdown.contains(event.target)) {
+                dropdownContent.style.display = 'none';
+            }
+        });
+
+        optionList.addEventListener("change", function(event) {
+            const itemName = event.target.value;
+
+            if (itemName === "") return;
+
+            if (!selectedItemsSet.has(itemName)) {
+                if (selectedItemsSet.size < 5) {
+                    selectedItemsSet.add(itemName);
+                    const newItem = createSelectedItemElement(itemName);
+                    selectedItemsContainer.appendChild(newItem);
+                } else {
+                    alert("En fazla 5 seçenek ekleyebilirsiniz.");
+                }
+            } else {
+                alert("Bu yetenek zaten eklenmiş.");
+            }
+
+            event.target.value = "";
+            updateSelectedSkills();
+        });
+
+        function updateSelectedSkills() {
+            const selectedSkillsArray = Array.from(selectedItemsSet);
+            document.getElementById('selectedSkills').value = selectedSkillsArray.join(',');
+        }
+
+        function createSelectedItemElement(itemName) {
+            const newItem = document.createElement("div");
+            newItem.classList.add("selected-item");
+
+
+            const itemNameSpan = document.createElement("span");
+            itemNameSpan.textContent = itemName;
+
+
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "x";
+            removeBtn.addEventListener("click", () => {
+                selectedItemsSet.delete(itemName);
+                newItem.remove();
+
+                Array.from(optionList.options).find(option => option.value === itemName).style.display = 'block';
+                updateSelectedSkills();
+            });
+
+            newItem.appendChild(itemNameSpan);
+            newItem.appendChild(removeBtn);
+
+            return newItem;
+        }
+
+        fetch('{{ url_for("static", filename="skills.json") }}')
+            .then(response => response.json())
+            .then(data => {
+                data.Skills.forEach(skill => {
+                    const option = document.createElement('option');
+                    option.value = skill;
+                    option.textContent = skill;
+                    optionList.appendChild(option);
+                });
+            });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const locationSelect = document.getElementById('location');
+            const skillsList = document.getElementById('skillsList'); // HTML'de oluşturduğumuz datalist elementi
+            const cities = [];
+
+            // Şehir verilerini yükle
+            fetch('{{ url_for("static", filename="cities.json") }}')
+                .then(response => response.json())
+                .then(data => {
+                    data.cities.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city;
+                        option.textContent = city;
+                        locationSelect.appendChild(option);
+                    });
+                });
+
+            flatpickr('#dob', {
+                dateFormat: 'd/m/Y', // Tarih formatı
+                disableMobile: true, // Mobil cihazlarda otomatik klavye açılmasını önler
+                onClose: function(selectedDates, dateStr, instance) {
+                    // Kullanıcı bir tarih seçtiğinde, seçilen tarihi uygun formata dönüştür
+                    var parts = dateStr.split('/');
+                    var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0]; // YYYY-MM-DD formatına dönüştür
+                    document.getElementById('dob').value = formattedDate;
+                }
+            });
+
+
+             const emailInput = document.getElementById('email');
+
+             emailInput.addEventListener('input', function() {
+                const email = this.value.trim();
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                if (!emailPattern.test(email)) {
+                    this.setCustomValidity('Lütfen geçerli bir e-posta adresi girin.');
+                } else {
+                    this.setCustomValidity('');
+                }
+             });
+            const phoneNumberInput = document.getElementById('number');
+
+            phoneNumberInput.addEventListener('input', function() {
+                let phoneNumber = this.value.trim();
+
+
+                if (phoneNumber.startsWith('+90')) {
+                    phoneNumber = phoneNumber.slice(3);
+                }
+
+                // Türk telefon numarası formatı kontrolü
+                const turkishPhoneNumberPattern = /^(0\d{10})$/;
+
+                if (!turkishPhoneNumberPattern.test(phoneNumber)) {
+                    this.setCustomValidity('05xxx.. formatında giriniz');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+
+
+
+            // Formu dinle ve gerekli kontrolleri yap
+            const form = document.getElementById('applicationForm');
+            const confirmationCheckbox = document.getElementById('confirmationCheckbox');
+            const submitButton = document.getElementById('submitButton');
+            const resumeInput = document.getElementById('resume');
+            const positionSelect = document.getElementById('position');
+            const educationSelect = document.getElementById('education');
+            const languageSelect = document.getElementById('languages');
+            const languageLevelSelect = document.getElementById('languageslevel');
+
+            // Pozisyonları getir ve seçenekleri doldur
+            fetch('/get_positions', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(position => {
+                    const option = document.createElement('option');
+                    option.value = position;
+                    option.textContent = position;
+                    positionSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Pozisyonlar alınırken hata oluştu:', error));
+
+
+
+            // Form gönderilirken gerekli kontrolleri yap
+            form.addEventListener('submit', function(event) {
+                if (!confirmationCheckbox.checked) {
+                    alert('Lütfen Kişisel Verilerin Korunması Kanunu şartlarını kabul edin.');
+                    event.preventDefault();
+                }
+                if (!resumeInput.value) {
+                    alert('Lütfen bir özgeçmiş dosyası seçin.');
+                    event.preventDefault();
+                }
+                if (positionSelect.value === "") {
+                    alert('Lütfen başvurulan pozisyonu seçin.');
+                    event.preventDefault();
+                }
+                if (educationSelect.value === "") {
+                    alert('Lütfen eğitim seviyesini seçin.');
+                    event.preventDefault();
+                }
+                if (languageSelect.value === "") {
+                    alert('Lütfen yabancı dil seçin.');
+                    event.preventDefault();
+                }
+                if (languageLevelSelect.value === "") {
+                    alert('Lütfen yabancı dil seviyesini seçin.');
+                    event.preventDefault();
+                }
+            });
+
+            // Onay kutusunu dinle ve gönderme düğmesini etkinleştir/devre dışı bırak
+            confirmationCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    submitButton.removeAttribute('disabled');
+                } else {
+                    submitButton.setAttribute('disabled', 'disabled');
+                }
+            });
+
+        });
+
+        const resumeInput = document.getElementById('resume');
+
+        resumeInput.addEventListener('change', function() {
+            const maxFileSizeMB = 10; // Maksimum dosya boyutu (MB cinsinden)
+            const maxFileSizeBytes = maxFileSizeMB * 1024 * 1024; // MB cinsinden byte'a çevir
+
+            if (this.files[0].size > maxFileSizeBytes) {
+                alert('Lütfen en fazla ' + maxFileSizeMB + ' MB boyutunda bir dosya yükleyin.');
+                this.value = ''; // Dosya yüklemeyi iptal et
+            }
+        });
+    </script>
+
+</body>
+
+</html>

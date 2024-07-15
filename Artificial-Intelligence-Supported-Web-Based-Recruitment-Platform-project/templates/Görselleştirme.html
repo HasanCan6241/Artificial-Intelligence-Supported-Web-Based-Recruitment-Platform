@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aday Başvuru Analizi</title>
+    <link rel="icon" type="image/png" href="static/i.png">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg-color: #009d63;
+            --main-text-color: #009d63;
+            --second-text-color: #bbbec5;
+            --second-bg-color: #c1efde;
+        }
+
+        .primary-text {
+            color: var(--main-text-color);
+        }
+
+        .second-text {
+            color: var(--second-text-color);
+
+        }
+
+        .primary-bg {
+            background-color: var(--main-bg-color);
+        }
+
+        .secondary-bg {
+            background-color: var(--second-bg-color);
+        }
+
+        .rounded-full {
+            border-radius: 100%;
+        }
+
+        #wrapper {
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        #sidebar-wrapper {
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            width: 18rem;
+            background-color: #343a40;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+        }
+
+        #sidebar-wrapper .sidebar-heading {
+            padding: 0.875rem 1rem;
+            font-size: 1.2rem;
+        }
+
+        #sidebar-wrapper .list-group {
+            width: 15rem;
+        }
+
+        #page-content-wrapper {
+            margin-left: 18rem;
+            width: calc(100% - 18rem);
+            transition: margin-left 0.3s ease;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 0;
+        }
+         #menu-toggle {
+            cursor: pointer;
+        }
+
+        #wrapper.toggled #page-content-wrapper {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .list-group-item {
+            border: none;
+            padding: 20px 30px;
+        }
+
+        .list-group-item.active {
+            background-color: transparent;
+            color: var(--main-text-color);
+            font-weight: bold;
+            border: none;
+        }
+
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+
+            #page-content-wrapper {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: -18rem;
+            }
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1600px;
+            margin: 28px auto;
+            padding: 28px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 45px;
+            justify-content: center; /* Grafikleri ortalamak için */
+        }
+
+        /* Graph Styles */
+        .graph {
+            flex: 1 1 48%;
+            min-width: 300px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .graph h1 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom" style="background:#1F1F1F;color:white;">
+               <h3>DASHBOARD</h3>
+            </div>
+            <div class="list-group list-group-flush my-3">
+                <a href="/dashboard" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-home me-2"></i>Admin Dashboard</a>
+                <a href="/aday_degerlendir" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-tachometer-alt me-2"></i>Aday Değerlendirme</a>
+                <a href="/gorsellestirme" class="list-group-item list-group-item-action bg-transparent second-text active fw-bold"><i class="fas fa-chart-bar me-2"></i>Aday Başvuru Analizi</a>
+                <a href="/ilan_ekle" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-plus-square me-2"></i>İlan Ekleme</a>
+                <a href="/remove_position" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-trash-alt me-2"></i>İlan Kaldırma</a>
+                <a href="/acilan_ilanlar" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-clipboard-list me-2"></i>Açılan İlanlar</a>
+                <a href="/Aday_basvuruları" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="bi bi-file-earmark-person me-2"></i>Aday Başvuruları</a>
+                <a href="/basvurular" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="bi bi-journal-text me-2"></i>Aday Özgeçmiş Havuzu</a>
+                <a href="/başvurulan_lokasyonlar" target="_blank" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-map-marker-alt me-2"></i>Başvurulan Lokasyonlar</a>
+                <a href="/register" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-user-plus me-2"></i>Admin Kayıt</a>
+                <a href="/logout" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="fas fa-power-off me-2"></i>Admin Çıkış</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Aday Başvuru Analizi</h2>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="graph" id="pozisyon_dagilimi"></div>
+                <div class="graph" id="ikametgah_dagilimi"></div>
+                <div class="graph" id="is_deneyimi"></div>
+                <div class="graph" id="pozisyon_egitim_is"></div>
+                <div class="graph" id="pozisyon_teknoloji"></div>
+                <div class="graph" id="pozisyon_egitim"></div>
+                <div class="graph" id="wordcloud"></div>
+                <div class="graph" id="eğitim_seviyesi"></div>
+                <div class="graph" id="Yabancı_Dil_grafik"></div>
+                <div class="graph" id="yabanci_dil_seviyesi"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+
+        var grafikler = {{ grafikler|tojson|safe }};
+
+        function plotGraph(elementId, graphData) {
+            Plotly.newPlot(elementId, graphData.data, graphData.layout);
+        }
+
+        plotGraph('pozisyon_dagilimi', JSON.parse(grafikler.pozisyon_dagilimi));
+        plotGraph('Yabancı_Dil_grafik', JSON.parse(grafikler.Yabancı_Dil_grafik));
+        plotGraph('is_deneyimi', JSON.parse(grafikler.is_deneyimi));
+        plotGraph('pozisyon_egitim', JSON.parse(grafikler.pozisyon_egitim));
+        plotGraph('pozisyon_teknoloji', JSON.parse(grafikler.pozisyon_teknoloji));
+        plotGraph('pozisyon_egitim_is', JSON.parse(grafikler.pozisyon_egitim_is));
+        plotGraph('wordcloud', JSON.parse(grafikler.wordcloud));
+        plotGraph('eğitim_seviyesi', JSON.parse(grafikler.eğitim_seviyesi));
+        plotGraph('ikametgah_dagilimi', JSON.parse(grafikler.ikametgah_dagilimi));
+        plotGraph('yabanci_dil_seviyesi', JSON.parse(grafikler.yabanci_dil_seviyesi));
+    </script>
+</body>
+</html>

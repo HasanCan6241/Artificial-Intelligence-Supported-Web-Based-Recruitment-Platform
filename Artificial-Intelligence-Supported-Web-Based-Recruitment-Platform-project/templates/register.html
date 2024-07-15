@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Kayıt</title>
+    <link rel="icon" type="image/png" href="static/i.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Global CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        :root {
+            --main-bg-color: #009d63;
+            --main-text-color: #009d63;
+            --second-text-color: #bbbec5;
+            --second-bg-color: #c1efde;
+        }
+
+        .primary-text {
+            color: var(--main-text-color);
+        }
+
+        .second-text {
+            color: var(--second-text-color);
+        }
+
+        .primary-bg {
+            background-color: var(--main-bg-color);
+        }
+
+        .secondary-bg {
+            background-color: var(--second-bg-color);
+        }
+
+        .rounded-full {
+            border-radius: 100%;
+        }
+
+        #wrapper {
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+            position: relative; /* z-index'in işe yaraması için wrapper elementine de position verin */
+            z-index: 1200; /* Butondan daha yüksek bir değer seçin */
+        }
+
+        #menu-toggle {
+            cursor: pointer;
+            position: relative;
+            z-index: 1100; /* Sidebar'dan daha üstte olması için yüksek bir değer seçtik */
+        }
+
+        #sidebar-wrapper {
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            width: 18rem;
+            background-color: #343a40; /* Sidebar arka plan rengi */
+            z-index: 1000;
+            transition: all 0.3s ease 0s;
+            overflow-y: auto;
+        }
+
+        #sidebar-wrapper .sidebar-heading {
+            padding: 0.875rem 1.00rem;
+            font-size: 1.2rem;
+        }
+
+        #sidebar-wrapper .list-group {
+            width: 15rem;
+        }
+
+        #page-content-wrapper {
+            margin-left: 18rem; /* sidebar genişliği kadar sol margine sahip */
+            width: calc(100% - 18rem);
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 0; /* Sidebar'ı tamamen gizle */
+        }
+
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        .list-group-item {
+            border: none;
+            padding: 20px 30px;
+        }
+
+        .list-group-item.active {
+            background-color: transparent;
+            color: var(--main-text-color);
+            font-weight: bold;
+            border: none;
+        }
+
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+
+            #page-content-wrapper {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: -15rem;
+            }
+        }
+
+        .login-container {
+            max-width: 650px;
+            margin: 0 auto;
+            margin-top: 200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding-left: 35px; /* Değişiklik: sol padding */
+        }
+
+        .login-form input[type="text"] {
+            background-image: url('static/email.png'); /* Değişiklik: email simgesi */
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: 8px 10px;
+        }
+
+        .login-form input[type="password"] {
+            background-image: url('static/password.png'); /* Değişiklik: şifre simgesi */
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: 8px 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom" style="background:#1F1F1F;color:white;">
+               <h3>DASHBOARD</h3>
+            </div>
+        <div class="list-group list-group-flush my-3">
+                <a href="/dashboard" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-home me-2"></i>Admin Dashboard</a>
+                <a href="/aday_degerlendir" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-tachometer-alt me-2"></i>Aday Değerlendirme</a>
+                <a href="/gorsellestirme" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-chart-bar me-2"></i>Aday Başvuru Analizi</a>
+                <a href="/ilan_ekle" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-plus-square me-2"></i>İlan Ekleme</a>
+                <a href="/remove_position" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-trash-alt me-2"></i>İlan Kaldırma</a>
+                <a href="/acilan_ilanlar" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-clipboard-list me-2"></i>Açılan İlanlar</a>
+                <a href="/Aday_basvuruları" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="bi bi-file-earmark-person me-2"></i>Aday Başvuruları</a>
+                <a href="/basvurular" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="bi bi-journal-text me-2"></i>Aday Özgeçmiş Havuzu</a>
+                <a href="/başvurulan_lokasyonlar" target="_blank" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-map-marker-alt me-2"></i>Başvurulan Lokasyonlar</a>
+                <a href="/register" class="list-group-item list-group-item-action bg-transparent second-text active fw-bold"><i class="fas fa-user-plus me-2"></i>Admin Kayıt</a>
+                <a href="/logout" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="fas fa-power-off me-2"></i>Admin Çıkış</a>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                <h2 class="fs-2 m-0">Yönetici Ekleme</h2>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container">
+            <div class="login-container">
+                <h2>Intellium Yönetici Ekleme</h2>
+                <form action="/register_fonction" method="post"> <!-- Değişiklik: method=post -->
+                    {% if message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                            </div>
+                            <input type="text" name="username" placeholder="E-Posta" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                            </div>
+                            <input type="password" name="password" placeholder="Şifre" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-login">Kayıt Ol</button>
+                </form>
+            </div>
+</div>
+<!-- Bootstrap JS ve jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    var el = document.getElementById("wrapper");
+    var toggleButton = document.getElementById("menu-toggle");
+    var pageContentWrapper = document.getElementById("page-content-wrapper");
+
+    toggleButton.onclick = function () {
+        el.classList.toggle("toggled");
+        var sidebarHidden = el.classList.contains("toggled");
+
+        if (sidebarHidden) {
+            pageContentWrapper.style.marginLeft = "0";
+            toggleButton.classList.remove("fa-align-left");
+            toggleButton.classList.add("fa-align-center");
+        } else {
+            pageContentWrapper.style.marginLeft = "18rem";
+            toggleButton.classList.remove("fa-align-center");
+            toggleButton.classList.add("fa-align-left");
+        }
+    };
+</script>
+</body>
+</html>
