@@ -1,5 +1,3 @@
-Yapay Zeka İle İşe Alım Platformu
-
 ## 📌 Proje Tanımı
 
 Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran adayları yapay zeka modeli ile değerlendirerek ilgili iş ilanı için uygunluklarını belirleyen yenilikçi bir platformdur. Bu sistem, adayları ön eleme süreçlerinden geçirerek işe alım sürecini hızlandırır ve daha verimli hale getirir.
