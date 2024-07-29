@@ -29,7 +29,7 @@ Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran a
 
 İlan başvuru sayfasında, şirketlerin açtığı iş pozisyonlarına başvururken özel olarak tasarlanmış özgeçmiş başvuru formunu doldurmanız gerekmektedir. Bu form, adayların kişisel bilgilerini, eğitim geçmişlerini, deneyimlerini ve yeteneklerini detaylı bir şekilde ifade etmelerini sağlar. Form ayrıca, arka planda çalışan yapay zeka modeline girdi verisi olarak kullanılır.
 
-<img src="project-images/project-images/basvuru-sayfası.png" alt="Öneri Sistemi" width="700" height="350">
+<img src="project-images/basvuru-sayfası.png" alt="Öneri Sistemi" width="700" height="350">
 
 
 ### 🔍 Kişiselleştirilmiş İş Öneri Sistemi
