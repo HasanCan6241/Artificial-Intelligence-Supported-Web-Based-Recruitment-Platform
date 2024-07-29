@@ -75,11 +75,11 @@ Admin panelindeki Aday Değerlendirme sayfasında, ilgili pozisyonlara başvuran
 
 Aday Değerlendirme Sistemi, adayların verilerini detaylı bir şekilde analiz etmek ve anlamak için veri analizi ve görselleştirme tekniklerini kullanır. Bu süreçte, adayların demografik özellikleri, eğitim geçmişleri, iş deneyimleri ve yetenekleri incelenir. Veri analizi ve görselleştirme, aday havuzunun niteliklerini ve eğilimlerini belirlemeye yardımcı olur. Ayrıca bu süreç, Şirketin açmış olduğu ilana başvuran adayların güçlü ve zayıf yönlerini daha iyi anlama ve karar verme sürecini destekleme imkanı sağlar. Bu sayfada, başvurulara göre pozisyonların dağılımı, başvuranların yabancı dil dağılımı, pozisyonlara göre ortalama iş deneyimi, pozisyonlara göre başvuranların eğitim seviyesi dağılımı, başvuranların eğitim seviyesi dağılımı, pozisyon ve teknoloji ilişkisi, pozisyonlara ve eğitim seviyelerine göre iş deneyimi, başvuranların ikametgah dağılımı, yabancı dil ve seviyelerine göre dağılım ve wordcloud ile başvuran adayların genel olarak bildiği teknolojiler gibi çeşitli veri görselleştirmeleri yapılır. Bu görselleştirmeler interaktif grafikler şeklinde kullanıcıya sunulur.
 
-<img src="project-images/basvuru_analizi-1.png" alt="Öneri Sistemi" width="825" height="380">
-<img src="project-images/basvuru_analizi-2.png" alt="Öneri Sistemi" width="825" height="380">
-<img src="project-images/basvuru_analizi-3.png" alt="Öneri Sistemi" width="825" height="380">
-<img src="project-images/basvuru_analizi-4.png" alt="Öneri Sistemi" width="825" height="380">
-<img src="project-images/basvuru_analizi_5.png" alt="Öneri Sistemi" width="825" height="380">
+<img src="project-images/basvuru_analizi-1.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-2.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-3.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-4.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi_5.png" alt="Öneri Sistemi" width="825" height="350">
 
 ### ➕ İlan Ekleme ve ➖ Kaldırma
 
