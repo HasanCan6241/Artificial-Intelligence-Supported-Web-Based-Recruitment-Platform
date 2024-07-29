@@ -4,6 +4,8 @@ Yapay Zeka İle İşe Alım Platformu
 
 Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran adayları yapay zeka modeli ile değerlendirerek ilgili iş ilanı için uygunluklarını belirleyen yenilikçi bir platformdur. Bu sistem, adayları ön eleme süreçlerinden geçirerek işe alım sürecini hızlandırır ve daha verimli hale getirir.
 
+<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform-project/static/_f686dc91-e4b9-4a91-8815-fba1624c895e.jpeg" alt="Öneri Sistemi" width="850" height="340">
+
 ## 📋 İçindekiler
 
 - [📌 Proje Tanımı](#📌-proje-tanımı)
@@ -31,7 +33,6 @@ Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran a
 İlan başvuru sayfasında, şirketlerin açtığı iş pozisyonlarına başvururken özel olarak tasarlanmış özgeçmiş başvuru formunu doldurmanız gerekmektedir. Bu form, adayların kişisel bilgilerini, eğitim geçmişlerini, deneyimlerini ve yeteneklerini detaylı bir şekilde ifade etmelerini sağlar. Form ayrıca, arka planda çalışan yapay zeka modeline girdi verisi olarak kullanılır.
 
 <img src="project-images/basvuru-sayfası.png" alt="Öneri Sistemi" width="825" height="380">
-
 
 ### 🔍 Kişiselleştirilmiş İş Öneri Sistemi
 
