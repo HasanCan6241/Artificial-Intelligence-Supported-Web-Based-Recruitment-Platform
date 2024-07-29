@@ -29,12 +29,12 @@ Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran a
 
 İlan başvuru sayfasında, şirketlerin açtığı iş pozisyonlarına başvururken özel olarak tasarlanmış özgeçmiş başvuru formunu doldurmanız gerekmektedir. Bu form, adayların kişisel bilgilerini, eğitim geçmişlerini, deneyimlerini ve yeteneklerini detaylı bir şekilde ifade etmelerini sağlar. Form ayrıca, arka planda çalışan yapay zeka modeline girdi verisi olarak kullanılır.
 
-<img src="project-images/basvuru-sayfası.png" alt="Öneri Sistemi" width="800" height="350">
+<img src="project-images/basvuru-sayfası.png" alt="Öneri Sistemi" width="825" height="350">
 
 
 ### 🔍 Kişiselleştirilmiş İş Öneri Sistemi
 
-<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform-project/static/_d1a018a3-ced6-4a85-abd1-d9d75b90b239.jpeg" alt="Öneri Sistemi" width="700" height="350">
+<img src="project-images/oneri_sistemi.png" alt="Öneri Sistemi" width="825" height="350">
 
 Kişiselleştirilmiş İş Öneri Sistemi sayfasında, adayların CV'lerini yükleyebilecekleri özel bir alan bulunmaktadır. Bu alana yüklenen CV'ler, yapay zeka modeli tarafından analiz edilerek kişinin en güçlü olduğu özellikler belirlenir ve adaya uygun iş önerisinde bulunulur. Aynı zamanda, güçlü oldukları alanlar ve geliştirmeleri gereken beceriler konusunda net geri bildirimler sağlanır. Bu sayede adaylar, kendi kariyer hedeflerine daha uygun iş fırsatlarını belirleme konusunda daha bilinçli kararlar alabilirler.
 
@@ -48,11 +48,15 @@ Kişiselleştirilmiş İş Öneri Sistemi sayfasında, adayların CV'lerini yük
 
 Aday Değerlendirme Hakkında Sayfası, kullanıcıların arka planda çalışan aday değerlendirme yapay zeka modeli ve kişiselleştirilmiş iş öneri modeli hakkında bilgi alabilecekleri bir platformdur. Ayrıca, yapılan veri görselleştirmeleri ile sistemimiz hakkında detaylı bilgiler de sunulmaktadır.
 
+<img src="project-images/sistem_hakkında.png" alt="Öneri Sistemi" width="825" height="350">
+
 ## 🔧 Admin Paneli
 
 ### 📈 Aday Değerlendirme
 
-<img src="Artificial-Intelligence-Supported-Web-Based-Recruitment-Platform-project/static/_f686dc91-e4b9-4a91-8815-fba1624c895e.jpeg" alt="Aday Değerlendirme" width="700" height="350">
+<img src="project-images/aday_degerlendirme.png" alt="Öneri Sistemi" width="825" height="350">
+
+<img src="project-images/aday_degerlendirme_modeli.png" alt="Öneri Sistemi" width="825" height="350">
 
 Admin panelindeki Aday Değerlendirme sayfasında, ilgili pozisyonlara başvuran adaylar yapay zeka modeli ile değerlendirilir ve uygunluk oranı belirlenir. Değerlendirme sonuçları bir tablo halinde gösterilir ve pozisyona göre filtreleme işlemleri yapılabilir. Bu tablo, adayın ismi, e-posta adresi, başvurduğu pozisyon, uygunluk skoru ve elemeden geçip geçmediği bilgilerini içerir. Filtrelemelere göre tabloyu Excel formatında indirme seçeneği de bulunmaktadır.
 
@@ -66,19 +70,31 @@ Admin panelindeki Aday Değerlendirme sayfasında, ilgili pozisyonlara başvuran
 
 Aday Değerlendirme Sistemi, adayların verilerini detaylı bir şekilde analiz etmek ve anlamak için veri analizi ve görselleştirme tekniklerini kullanır. Bu süreçte, adayların demografik özellikleri, eğitim geçmişleri, iş deneyimleri ve yetenekleri incelenir. Veri analizi ve görselleştirme, aday havuzunun niteliklerini ve eğilimlerini belirlemeye yardımcı olur. Ayrıca bu süreç, Şirketin açmış olduğu ilana başvuran adayların güçlü ve zayıf yönlerini daha iyi anlama ve karar verme sürecini destekleme imkanı sağlar. Bu sayfada, başvurulara göre pozisyonların dağılımı, başvuranların yabancı dil dağılımı, pozisyonlara göre ortalama iş deneyimi, pozisyonlara göre başvuranların eğitim seviyesi dağılımı, başvuranların eğitim seviyesi dağılımı, pozisyon ve teknoloji ilişkisi, pozisyonlara ve eğitim seviyelerine göre iş deneyimi, başvuranların ikametgah dağılımı, yabancı dil ve seviyelerine göre dağılım ve wordcloud ile başvuran adayların genel olarak bildiği teknolojiler gibi çeşitli veri görselleştirmeleri yapılır. Bu görselleştirmeler interaktif grafikler şeklinde kullanıcıya sunulur.
 
+<img src="project-images/basvuru_analizi-1.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-2.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-3.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-4.png" alt="Öneri Sistemi" width="825" height="350">
+<img src="project-images/basvuru_analizi-5.png" alt="Öneri Sistemi" width="825" height="350">
+
 ### ➕ İlan Ekleme ve ➖ Kaldırma
 
 #### ➕ İlan Ekleme
 
 İlan Ekleme sayfasında, yöneticinin belirlediği kriterlere göre yeni iş ilanları ekleyebileceğiniz bir form bulunmaktadır.
 
+<img src="project-images/ilan-ekleme.png" alt="Öneri Sistemi" width="825" height="350">
+
 #### ➖ İlan Kaldırma
 
 İlan Kaldırma sayfasında ise eklenen ilanların kaldırılması işlemleri gerçekleştirilir.
 
+<img src="project-images/ilan-kaldırma.png" alt="Öneri Sistemi" width="825" height="350">
+
 ### 📂 Açılan İlanlar
 
 Şirketin eklediği ilanların görüntülenmesi ve yönetimi gerçekleştirilir.
+
+<img src="project-images/acilan_ilanlar.png" alt="Öneri Sistemi" width="825" height="350">
 
 ### 📄 Aday Başvuruları ve Özgeçmiş Havuzu
 
@@ -88,17 +104,25 @@ Aday Değerlendirme Sistemi, adayların verilerini detaylı bir şekilde analiz 
 
 Aday Başvuruları sayfasında, ilan başvuru sayfasında adayların doldurduğu bilgiler bulunmaktadır.
 
+<img src="project-images/aday_basvurulari.png" alt="Öneri Sistemi" width="700" height="350">
+
 ####📄 Özgeçmiş Havuzu
 
 Özgeçmiş Havuzu sayfasında, adayların ilan başvuru sayfasında sisteme yükledikleri CV'lerin görüntülenmesi ve indirilmesi gibi seçenekler bulunmaktadır. Bu sayfadaki tablolar, yöneticinin işini kolaylaştırmak için çeşitli özel fonksiyonlara sahiptir.
+
+<img src="project-images/ozgecmis_havuzu.png" alt="Öneri Sistemi" width="700" height="350">
 
 ### 🌍 Başvurulan Lokasyonlar
 
 Başvurulan Lokasyonlar sayfasında, ilanlara başvuran adayların hangi bölgelerden başvurduklarını dünya haritası üzerinde görebilirsiniz. Harita üzerinde şirketin konumu ve logosu da gösterilmektedir. Adayların başvurdukları lokasyonlar kırmızı ikon, şirket ise mavi ikon ile belirtilir. Konumların üzerine tıkladığınızda, ilgili konumda başvuran adayların bilgileri ve konumun ismi pop-up ekranında gösterilir.
 
+<img src="project-images/basvurulan_lokasyonlar.png" alt="Öneri Sistemi" width="700" height="350">
+
 ### 👨‍💼 Yönetici Ekleme Sayfası
 
 Sisteme kayıtlı admin kullanıcısının, yeni bir yönetici kaydedebilmesi için doldurması gereken form bulunmaktadır.
+
+<img src="project-images/yönetici_ekleme.png" alt="Öneri Sistemi" width="700" height="350">
 
 ## 🔒 Güvenlik Önlemleri
 
