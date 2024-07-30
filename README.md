@@ -12,7 +12,7 @@ Aday Değerlendirme Sistemi, şirketlerin açtığı iş ilanlarına başvuran a
   - [🔍 Kişiselleştirilmiş İş Öneri Sistemi](#🔍-kişiselleştirilmiş-iş-öneri-sistemi)
   - [📊 Aday Değerlendirme Sayfası](#📊-aday-değerlendirme-sayfası)
 - [🔧 Admin Paneli](#🔧-admin-paneli)
-  - [👨‍💼 Aday Dashboard](#👨‍💼-admin-dashboard)    
+  - [👨‍💼 Admin Dashboard](#👨‍💼-admin-dashboard)    
   - [📈 Aday Değerlendirme](#📈-aday-değerlendirme)
   - [📉 Aday Başvuru Analizi](#📉-aday-başvuru-analizi)
   - [➕ İlan Ekleme ve ➖ Kaldırma](#➕-ilan-ekleme-ve-➖-kaldırma)
