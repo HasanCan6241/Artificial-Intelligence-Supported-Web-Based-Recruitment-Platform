@@ -126,7 +126,7 @@ Başvurulan Lokasyonlar sayfasında, ilanlara başvuran adayların hangi bölgel
 
 Sisteme kayıtlı admin kullanıcısının, yeni bir yönetici kaydedebilmesi için doldurması gereken form bulunmaktadır.
 
-<img src="project-images/yönetici_ekleme.png" alt="Öneri Sistemi" width="825" height="380">
+<img src="project-images/register.png" alt="Öneri Sistemi" width="825" height="380">
 
 ## 🔒 Güvenlik Önlemleri
 
